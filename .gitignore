@@ -1,0 +1,74 @@
+# =========================
+# General
+# =========================
+.DS_Store
+*.log
+*.tmp
+*.bak
+*.swp
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.cer
+*.der
+*.pub
+*.ppk
+aws_sso_cache/
+.aws/
+.config/
+credentials
+config
+
+# =========================
+# Output / Local Data
+# =========================
+logs/
+output/
+tmp/
+*.json
+*.csv
+*.yaml
+*.yml
+
+# =========================
+# Python / Virtual Envs
+# =========================
+venv/
+env/
+.venv/
+ENV/
+Pipfile.lock
+poetry.lock
+
+# =========================
+# Terraform / IaC
+# =========================
+*.tfstate
+*.tfstate.*
+crash.log
+.terraform/
+.terraform.lock.hcl
+*.tfvars
+*.tfvars.json
+
+# =========================
+# VS Code / IDE
+# =========================
+.vscode/
+.idea/
+*.code-workspace
+
+# =========================
+# OS Files
+# =========================
+Thumbs.db
