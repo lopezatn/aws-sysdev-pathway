@@ -90,3 +90,14 @@ resource "aws_iam_instance_profile" "ec2_profile" {
   role = aws_iam_role.ec2_role.name
 }
 
+resource "aws_instance" "web" {
+  ami = data.aws_ssm_parameter.ubuntu_ami.value
+  instance_type = "t3.micro"
+  subnet_id = "subnet-0a3ab44f6771e1f6d"
+  vpc_security_group_ids = [aws_security_group.web_sg.id]
+  iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
+  key_name = "sysdev-nginx-key"
+  tags = {
+    Name = "sysdev-web-server"
+  }
+}
