@@ -100,4 +100,30 @@ resource "aws_instance" "web" {
   tags = {
     Name = "sysdev-web-server"
   }
+
+  user_data = <<-EOF
+    #!/bin/bash
+    apt-get update -y
+    apt-get install -y nginx
+
+    mkdir -p /var/www/portfolio
+    echo "Hello world from Nginx!" > /var/www/portfolio/index.html
+
+    sed -i 's|root /var/www/html;|root /var/www/portfolio;|' /etc/nginx/sites-available/default
+    
+    nginx -t
+    systemctl reload nginx
+  EOF
+}
+
+output "instance_public_ip" {
+  value = aws_instance.web.public_ip
+}
+
+output "instance_id" {
+  value = aws_instance.web.id
+}
+
+output "security_group_id" {
+  value = aws_security_group.web_sg.id
 }
