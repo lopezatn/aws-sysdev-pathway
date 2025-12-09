@@ -1,8 +1,8 @@
 resource "aws_autoscaling_group" "sysdev_asg" {
-  name                 = "sysdev-asg"
-  max_size             = 2
-  min_size             = 1
-  desired_capacity     = 1
+  name             = "sysdev-asg"
+  max_size         = 2
+  min_size         = 1
+  desired_capacity = 1
 
   vpc_zone_identifier = [
     "subnet-0a3ab44f6771e1f6d"
@@ -21,4 +21,6 @@ resource "aws_autoscaling_group" "sysdev_asg" {
     value               = "sysdev-web-server"
     propagate_at_launch = true
   }
+
+  target_group_arns = [aws_lb_target_group.sysdev_tg.arn]
 }
