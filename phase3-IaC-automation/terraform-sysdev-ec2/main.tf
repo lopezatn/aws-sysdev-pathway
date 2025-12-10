@@ -90,32 +90,6 @@ resource "aws_iam_instance_profile" "ec2_profile" {
   role = aws_iam_role.ec2_role.name
 }
 
-resource "aws_instance" "web" {
-  ami = data.aws_ssm_parameter.ubuntu_ami.value
-  instance_type = "t3.micro"
-  subnet_id = "subnet-0a3ab44f6771e1f6d"
-  vpc_security_group_ids = [aws_security_group.web_sg.id]
-  iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
-  key_name = "sysdev-nginx-key"
-  tags = {
-    Name = "sysdev-web-server"
-  }
-
-  user_data = <<-EOF
-    #!/bin/bash
-    apt-get update -y
-    apt-get install -y nginx
-
-    mkdir -p /var/www/portfolio
-    echo "Hello world from Nginx!" > /var/www/portfolio/index.html
-
-    sed -i 's|root /var/www/html;|root /var/www/portfolio;|' /etc/nginx/sites-available/default
-    
-    nginx -t
-    systemctl reload nginx
-  EOF
-}
-
 output "instance_public_ip" {
   value = aws_instance.web.public_ip
 }
