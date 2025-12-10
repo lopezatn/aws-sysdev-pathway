@@ -90,14 +90,6 @@ resource "aws_iam_instance_profile" "ec2_profile" {
   role = aws_iam_role.ec2_role.name
 }
 
-output "instance_public_ip" {
-  value = aws_instance.web.public_ip
-}
-
-output "instance_id" {
-  value = aws_instance.web.id
-}
-
 output "security_group_id" {
   value = aws_security_group.web_sg.id
 }
