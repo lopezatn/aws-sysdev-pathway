@@ -1,8 +1,8 @@
 resource "aws_autoscaling_group" "sysdev_asg" {
   name             = "sysdev-asg"
-  max_size         = 2
-  min_size         = 1
-  desired_capacity = 1
+  max_size         = var.max_size
+  min_size         = var.min_size
+  desired_capacity = var.desired_capacity
 
   vpc_zone_identifier = data.aws_subnets.default_vpc_subnets.ids
 

@@ -12,7 +12,7 @@ resource "aws_lb_target_group" "sysdev_tg" {
   name        = "sysdev-tg"
   port        = 80
   protocol    = "HTTP"
-  vpc_id      = "aws_vpc.default.id"
+  vpc_id      = data.aws_vpc.default.id
   target_type = "instance"
 
   health_check {
@@ -37,4 +37,9 @@ resource "aws_lb_listener" "http" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.sysdev_tg.arn
   }
+}
+
+output "alb_dns_name" {
+  description = "Public DNS name of the Application Load Balancer"
+  value = aws_lb.sysdev_alb.dns_name
 }

@@ -34,14 +34,14 @@ data "aws_subnets" "default_vpc_subnets" {
 resource "aws_security_group" "web_sg" {
   name        = "sysdev-web-sg"
   description = "Allow SSH and HTTP"
-  vpc_id      = "aws_vpc.default.id"
+  vpc_id      = data.aws_vpc.default.id
 
   ingress {
     description = "SSH"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["86.104.249.102/32"]
+    cidr_blocks = ["86.104.249.241/32"]
   }
 
   ingress {
@@ -62,12 +62,6 @@ resource "aws_security_group" "web_sg" {
 
 
 
-# IAM Instance Profile
-resource "aws_iam_instance_profile" "ec2_profile" {
-  name = "sysdev-ec2-instance-profile"
-  role = aws_iam_role.ec2_role.name
-}
-
 # IAM Role
 resource "aws_iam_role" "ec2_role" {
   name = "sysdev-ec2-role"
@@ -84,6 +78,12 @@ resource "aws_iam_role" "ec2_role" {
       }
     ]
   })
+}
+
+# IAM Instance Profile
+resource "aws_iam_instance_profile" "ec2_profile" {
+  name = "sysdev-ec2-instance-profile"
+  role = aws_iam_role.ec2_role.name
 }
 
 # IAM Policy

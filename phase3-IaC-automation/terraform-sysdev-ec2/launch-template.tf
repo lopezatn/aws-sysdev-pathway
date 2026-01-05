@@ -1,7 +1,7 @@
 resource "aws_launch_template" "sysdev_web_lt" {
   name_prefix   = "sysdev-web-"
   image_id      = data.aws_ssm_parameter.ubuntu_ami.value
-  instance_type = "t3.micro"
+  instance_type = var.instance_type
   key_name      = "sysdev-nginx-key"
 
   iam_instance_profile {
