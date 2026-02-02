@@ -12,7 +12,7 @@ sed -i 's|root /var/www/html;|root /var/www/portfolio;|' /etc/nginx/sites-availa
 nginx -t
 systemctl reload nginx
 
-# Install CloudWatch Agent (Ubuntu)
+# Install CloudWatch Agent
 cd /tmp
 wget -q https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
 dpkg -i -E ./amazon-cloudwatch-agent.deb
@@ -48,3 +48,7 @@ JSON
   -m ec2 \
   -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json \
   -s
+
+# install amazon-ssm-agent
+apt-get install -y amazon-ssm-agent
+systemctl enable --now amazon-ssm-agent
