@@ -2,7 +2,7 @@
 # Common locals
 ########################
 locals {
-  alerts_topic_arn = "arn:aws:sns:eu-central-1:000000000000:webhost-alerts"
+alerts_topic_arn = "arn:aws:sns:eu-central-1:000000000000:webhost-alerts"
 }
 
 ########################
