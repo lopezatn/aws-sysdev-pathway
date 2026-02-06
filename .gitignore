@@ -77,3 +77,6 @@ venv/
 __pycache__/
 *.pyc
 .env
+
+# Python venv (local only)
+aws/
