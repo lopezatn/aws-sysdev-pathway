@@ -80,3 +80,10 @@ __pycache__/
 
 # Python venv (local only)
 aws/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+*.tfvars
