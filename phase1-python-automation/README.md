@@ -10,7 +10,3 @@ This folder contains a Python script that creates EBS snapshots for all running 
    - `Name=<volume-id>-<timestamp>-auto`
    - `VolumeId` and `InstanceId`
 4. Prints a JSON summary once completed.
-
-## Run locally
-```bash
-AWS_PROFILE=dev python3 create_ebs_snapshot.py
